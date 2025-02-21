@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app/page.tsx -> ../components/interactive-map\":{\"id\":\"app/page.tsx -> ../components/interactive-map\",\"files\":[\"static/css/_app-pages-browser_components_interactive-map_tsx.css\",\"static/chunks/_app-pages-browser_components_interactive-map_tsx.js\"]}}"

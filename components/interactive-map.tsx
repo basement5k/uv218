@@ -14,7 +14,7 @@ import { Marker } from './marker-popup'
 import { createRoot } from 'react-dom/client'
 import MarkerPopup from './marker-popup'
 import { Button } from "@/components/ui/button"
-import { Globe2 } from 'lucide-react'
+import { Globe2, X } from 'lucide-react'
 
 
 interface MapProps {
@@ -24,6 +24,7 @@ interface MapProps {
 const InteractiveMap = ({ markers }: MapProps) => {
 const mapRef = useRef<L.Map | null>(null)
 const [currentTileLayer, setCurrentTileLayer] = useState<'Default' | 'Satellite'>('Default')
+const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null)
 
 useEffect(() => {
  if (typeof window !== 'undefined' && !mapRef.current) {
@@ -68,14 +69,10 @@ useEffect(() => {
          html: `<img src="${marker.avatar}" alt="${marker.name}" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid white;" />`,
          iconSize: [30, 30],
          iconAnchor: [15, 15],
-         popupAnchor: [0, -30]
        })
 
        const markerInstance = L.marker([marker.lat, marker.long], { icon: customIcon })
-       const popupContent = document.createElement('div')
-       const root = createRoot(popupContent)
-       root.render(<MarkerPopup marker={marker} />)
-       markerInstance.bindPopup(popupContent)
+       markerInstance.on('click', () => setSelectedMarker(marker))
        markersCluster.addLayer(markerInstance);
      }
    })
@@ -93,13 +90,28 @@ const handleToggleView = () => {
 }
 
 return (
- <div className="relative">
-   <div id="map" className="h-[800px] w-full z-0 border-8 border-[#a7b6a0]" />
-   <div className="absolute top-4 right-4 space-x-4">
-     <Button variant="outline" size="icon" onClick={handleToggleView}>
-       <Globe2 className="w-4 h-4" />
-     </Button>
+ <div className="relative flex">
+   <div className="flex-1">
+     <div id="map" className="h-[800px] w-full z-0 border-8 border-[#a7b6a0]" />
+     <div className="absolute top-4 right-4 space-x-4">
+       <Button variant="outline" size="icon" onClick={handleToggleView}>
+         <Globe2 className="w-4 h-4" />
+       </Button>
+     </div>
    </div>
+   {selectedMarker && (
+     <div className="w-[400px] border-l p-6 bg-white relative h-[800px] overflow-y-auto">
+       <Button 
+         variant="ghost" 
+         size="icon"
+         className="absolute top-2 right-2"
+         onClick={() => setSelectedMarker(null)}
+       >
+         <X className="h-4 w-4" />
+       </Button>
+       <MarkerPopup marker={selectedMarker} />
+     </div>
+   )}
  </div>
 )
 }

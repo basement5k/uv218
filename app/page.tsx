@@ -7,11 +7,10 @@ const InteractiveMap = dynamic(() => import('../components/interactive-map'), { 
 import PhotoGallery from '../components/photo-gallery'
 import FeaturedImage from '../components/featured-image'
 import Footer from '../components/footer'
-import { MapMarker } from '../types/map'
+import { Marker } from '../components/marker-popup'
 import { predefinedMarkers } from '../data/predefinedMarkers'
-
 export default function Page() {
-  const [markers, setMarkers] = useState<MapMarker[]>([])
+  const [markers, setMarkers] = useState<Marker[]>([])
 
   useEffect(() => {
     setMarkers(predefinedMarkers)

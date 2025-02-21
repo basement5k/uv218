@@ -1,4 +1,4 @@
-import type { MapMarker } from "../types/map"
+import { MapPin } from 'lucide-react';
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import Image from "next/image"
@@ -6,8 +6,28 @@ import Link from "next/link"
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
+export interface Marker {
+  id: string;
+  lat: number | null;
+  long: number;
+  markerImage: string;
+  name: string;
+  fid: number;
+  followerCount: number;
+  castText: string;
+  likesCount: number;
+  recastsCount: number;
+  repliesCount: number;
+  avatar: string;
+  embeddedImage: string;
+  embeddedImages?: string[];
+  neynarScore: number;
+  powerBadge: boolean;
+  castLink: string;
+}
+
 interface MarkerPopupProps {
-  marker: MapMarker
+  marker: Marker;
 }
 
 export default function MarkerPopup({ marker }: MarkerPopupProps) {

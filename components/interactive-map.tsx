@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-// Correct import for MarkerClusterGroup
-import * as MCG from 'leaflet.markercluster'
-import 'leaflet.markercluster/dist/MarkerCluster.css';
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'leaflet.markercluster'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
-import { MapMarker } from '../types/map'
+// Need to use require since MarkerClusterGroup is not a named export
+const MarkerClusterGroup = (L as any).MarkerClusterGroup
+
+import { Marker } from './marker-popup'
 import { createRoot } from 'react-dom/client'
 import MarkerPopup from './marker-popup'
 import { Button } from "@/components/ui/button"
@@ -16,7 +18,7 @@ import { Globe2 } from 'lucide-react'
 
 
 interface MapProps {
-markers: MapMarker[]
+  markers: Marker[]
 }
 
 const InteractiveMap = ({ markers }: MapProps) => {
@@ -53,14 +55,14 @@ useEffect(() => {
    const map = mapRef.current
 
    // Correct MarkerClusterGroup instantiation
-   const markersCluster = new MCG.MarkerClusterGroup({
+   const markersCluster = new MarkerClusterGroup({
      showCoverageOnHover: false,
      spiderfyOnMaxZoom: true,
      maxClusterRadius: 20,
    });
 
    markers.forEach((marker) => {
-     if (marker.lat && marker.long) {
+     if (marker.lat && typeof marker.long === 'number') {
        const customIcon = L.divIcon({
          className: 'custom-icon',
          html: `<img src="${marker.avatar}" alt="${marker.name}" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid white;" />`,

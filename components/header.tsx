@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import type { JSX } from 'react'
 
 export default function Header() {
   return (

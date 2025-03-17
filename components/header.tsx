@@ -9,7 +9,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-20 bg-[url('/header-bg1.png')] bg-cover bg-center"
+      className="sticky top-0 z-20 bg-[#A7B6A0]"
     >
       <nav className="container mx-auto px-6 py-4 flex flex-col items-center">
         <Link href="/" className="text-center">
@@ -17,8 +17,8 @@ export default function Header() {
           <div className="text-lg font-bold font-['Helvetica'] text-black mt-1">-EST. 2024-</div>
           <div className="text-lg font-bold font-['Helvetica'] text-black mt-1">BROOKLYN, NEW YORK</div>
         </Link>
-        <ul className="flex space-x-10 mt-4">
-          {["About", "Basement5k's Garage", "Contact"].map((item) => (
+        <ul className="flex space-x-10 mt-8">
+          {["About", "Dashboard", "Contact"].map((item) => (
             <li key={item}>
               <a 
                 href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 

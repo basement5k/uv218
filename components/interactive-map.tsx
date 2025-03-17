@@ -92,7 +92,7 @@ const handleToggleView = () => {
 return (
  <div className="relative flex">
    <div className="flex-1">
-     <div id="map" className="h-[800px] w-full z-0 border-8 border-[#a7b6a0]" />
+     <div id="map" className="h-[800px] w-full z-0 border-8 border-[#FFFFFF" />
      <div className="absolute top-4 right-4 space-x-4">
        <Button variant="outline" size="icon" onClick={handleToggleView}>
          <Globe2 className="w-4 h-4" />

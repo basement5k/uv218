@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import type { JSX } from 'react'
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 bg-[#a7b6a0]"
+      className="sticky top-0 z-20 bg-[url('/header-bg1.png')] bg-cover bg-center"
     >
       <nav className="container mx-auto px-6 py-4 flex flex-col items-center">
         <Link href="/" className="text-center">

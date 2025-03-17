@@ -9,6 +9,8 @@ import FeaturedImage from '../components/featured-image'
 import Footer from '../components/footer'
 import { Marker } from '../components/marker-popup'
 import { predefinedMarkers } from '../data/predefinedMarkers'
+import Dashboard from '../components/dashboard'
+
 export default function Page() {
   const [markers, setMarkers] = useState<Marker[]>([])
 
@@ -27,9 +29,10 @@ export default function Page() {
             </h2>
           </div>
         </div>
-        <div className="rounded-xl overflow-hidden border-4 border-black/10 shadow-[0_0_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur">
+        <div className="rounded-xl overflow-hidden border-4 border-black/10 shadow-[0_0_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur mb-8">
           <InteractiveMap markers={markers} />
         </div>
+        <Dashboard markers={markers} />
       </section>
 
       <section className="container mx-auto py-12 px-4">
